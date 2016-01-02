@@ -1,2 +1,48 @@
 @import 'reset';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+html{
+  font-size:62.5%;
+}
+
+body{
+  background:#eee;
+  color:#444;
+  font-size:1.4rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#logo{
+  width:100%;
+  max-width:800px;
+  margin:0 auto;
+}
+
+footer{
+  color:#eee;
+  background:#222;
+  #tweets{
+    li{
+      padding:1.5rem;
+      overflow: hidden;
+      display: block;
+    }
+    img{
+      display:block;
+      width:25%;
+      float:right;
+      margin:0 0 1rem 1rem;
+    }
+    a{
+      color:#aaa;
+    }
+    .tco-hidden{
+      display:none;
+    }
+    .tweet-infos{
+      text-align:right;
+      font-style:italic;
+      clear:both;
+    }
+  }
+}
