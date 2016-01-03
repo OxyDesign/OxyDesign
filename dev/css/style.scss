@@ -1,5 +1,5 @@
 @import 'reset';
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro);
 
 html{
   font-size:62.5%;
@@ -16,6 +16,7 @@ body{
   width:100%;
   max-width:800px;
   margin:0 auto;
+  display:block;
 }
 
 footer{
@@ -43,6 +44,128 @@ footer{
       text-align:right;
       font-style:italic;
       clear:both;
+    }
+  }
+}
+
+
+.global-object{
+  overflow:hidden;
+  padding:2rem 0;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  padding:1rem;
+  color:#444;
+  text-align: center;
+  ul{
+    text-align: left;
+    display:block;
+    display: inline-block;
+  }
+  li{
+    padding:0 2rem;
+    display:block;
+    vertical-align:top;
+  }
+  .key{
+    vertical-align:top;
+    display: inline-block;
+    color:#888;
+    + ul{
+      display: inline-block;
+    }
+  }
+  .string{
+    color:#C9C300;
+    &:before,
+    &:after{
+      content:'\'';
+    }
+  }
+  .int{
+    color:#F7A916;
+  }
+  .bool{
+    color:#C76CCC;
+  }
+  .null{
+    color:#73BA8F;
+  }
+  .function{
+    color:#739FBA;
+    &:before{
+      content:'function(){';
+    }
+    &:after{
+      content:'}';
+    }
+  }
+  .date{
+    color:#E37171;
+    &:before{
+      content:'new Date(';
+    }
+    &:after{
+      content:')';
+    }
+  }
+  .object{
+    &:before{
+      content:'{';
+    }
+    &:after{
+      content:'}';
+    }
+    li{
+      &:after{
+        content:',';
+        display: inline-block;
+      }
+      &:last-child{
+        &:after{
+          display: none;
+        }
+      }
+    }
+  }
+  .array{
+    &:before{
+      content:'[';
+    }
+    &:after{
+      content:']';
+    }
+    li{
+      &:after{
+        content:',';
+        display: inline-block;
+      }
+      &:last-child{
+        &:after{
+          display: none;
+        }
+      }
+    }
+  }
+  .leading-commas{
+    > li{
+      margin:0.25rem 0;
+      &:after{
+        display: none;
+      }
+      &:before{
+        content:',';
+        display: inline-block;
+        padding-right:0.5rem;
+        vertical-align: top;
+        color:#888;
+      }
+      &:first-child{
+        &:before{
+          opacity:0;
+        }
+      }
     }
   }
 }
