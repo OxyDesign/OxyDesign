@@ -9,6 +9,7 @@ body{
   background:#eee;
   color:#444;
   font-size:1.4rem;
+  line-height: 1.8rem;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -19,14 +20,30 @@ body{
   display:block;
 }
 
+h1{
+  font-size:1.6rem;
+  line-height: 3rem;
+  text-align: center;
+}
+
 footer{
   color:#eee;
   background:#222;
   #tweets{
     li{
-      padding:1.5rem;
+      padding:1.5rem 4rem;
       overflow: hidden;
       display: block;
+      &:before{
+        content: '';
+        display:block;
+        width:10%;
+        height:0;
+        padding-top:10%;
+        margin:0 auto 0.5rem;
+        background: url(../img/twitter.svg) center center no-repeat;
+        background-size:90%;
+      }
     }
     img{
       display:block;
@@ -44,6 +61,7 @@ footer{
       text-align:right;
       font-style:italic;
       clear:both;
+      padding-top:1rem;
     }
   }
 }
@@ -52,12 +70,43 @@ footer{
 .global-object{
   overflow:hidden;
   padding:2rem 0;
+  margin:2rem 0;
   font-family: 'Source Code Pro', monospace;
   font-size: 1.4rem;
   line-height: 2rem;
   padding:1rem;
   color:#444;
   text-align: center;
+  position:relative;
+  .bt-toggle{
+    transition: 0.3s ease transform;
+    position:absolute;
+    padding:0;
+    border-radius:50%;
+    background:#444;
+    width:3rem;
+    height:3rem;
+    border:0;
+    top:1rem;
+    right:2rem;
+    transform: rotate(90deg);
+    outline: 0;
+    &.closed{
+      transform: rotate(0);
+    }
+    &:after{
+      content:'';
+      display:block;
+      width:0;
+      height:0;
+      border-style:solid;
+      border-width:0.75rem 0 0.75rem 0.75rem;
+      border-color:transparent transparent transparent #eee;
+      position:absolute;
+      top:0.75rem;
+      left:1.25rem;
+    }
+  }
   ul{
     text-align: left;
     display:block;
@@ -165,6 +214,47 @@ footer{
         &:before{
           opacity:0;
         }
+      }
+    }
+  }
+  .toggle{
+    position:relative;
+    > .key:after{
+      content:'';
+      display:inline-block;
+      width:0;
+      height:0;
+      margin-left:0.5rem;
+      position:absolute;
+      border-style:solid;
+      border-width:0.5rem 0.5rem 0 0.5rem;
+      border-color:#444 transparent transparent transparent ;
+      left:0.25rem;
+      top:1rem;
+    }
+    &.closed > .key:after{
+      border-width:0.5rem 0 0.5rem 0.5rem;
+      border-color:transparent transparent transparent #444;
+      left:0.5rem;
+      top:0.5rem;
+    }
+  }
+  .closed{
+    > .array{
+      &:after{
+        content:' ... ]';
+      }
+      > li {
+        display: none;
+      }
+    }
+    > .function,
+    > .object{
+      &:after{
+        content:' ... }';
+      }
+      > li {
+        display: none;
       }
     }
   }

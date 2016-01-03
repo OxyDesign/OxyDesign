@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="OxyDesign" />
   <meta name="keywords" content="OxyDesign" />
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#222222">
   <link rel="stylesheet" href="styles/style.css"></head>
 </head>
 <body>
@@ -27,7 +27,7 @@
           <li><span class="key">city :</span> <span class="string">London</span></li>
           <li><span class="key">job :</span> <span class="string">Front End Developer</span></li>
 
-          <li><span class="key">skills :</span>
+          <li class="toggle"><span class="key">skills :</span>
             <ul class="array">
               <li><span class="string">JavaScript</span></li>
               <li><span class="string">Html</span></li>
@@ -35,14 +35,14 @@
             </ul>
           </li>
           <li><span class="key">experience :</span> <span class="int">7</span></li>
-          <li><span class="key">curRole :</span>
+          <li class="toggle"><span class="key">curRole :</span>
             <ul class="object">
               <li><span class="key">name :</span> <span class="string">Syzygy, UK</span></li>
               <li><span class="key">type :</span> <span class="string">perm</span></li>
               <li><span class="key">since :</span>  <span class="date"><span class="string">Sun Jan 05 2015 00:10:00 GMT+0000 (GMT)</span></span></li>
             </ul>
           </li>
-          <li><span class="key">prevRoles :</span>
+          <li class="toggle"><span class="key">prevRoles :</span>
             <ul class="array leading-commas">
               <li>
                 <ul class="object">
@@ -109,7 +109,7 @@
               </li>
             </ul>
           </li>
-          <li><span class="key">former :</span>
+          <li class="toggle"><span class="key">former :</span>
             <ul class="array">
               <li><span class="string">Webdesigner</span></li>
               <li><span class="string">Video Editor</span></li>
@@ -119,17 +119,18 @@
 
           <li><span class="key">diet :</span> <span class="string">Vegan</span></li>
           <li><span class="key">religion :</span> <span class="null">null</span></li>
-          <li><span class="key">playGuitar :</span>
+          <li class="toggle"><span class="key">playGuitar :</span>
             <ul class="function">
               <li>setInterval(shred,60);</li>
             </ul>
           </li>
-          <li><span class="key">cook :</span>
+          <li class="toggle"><span class="key">cook :</span>
             <ul class="function">
               <li>return dish;</li>
             </ul>
           </li>
         </ul>
+        <button class="bt-toggle closed"></button>
       </div>
 
       <aside>
