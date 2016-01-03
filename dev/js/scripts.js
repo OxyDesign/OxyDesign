@@ -1,5 +1,7 @@
 window.onload = function(){
-  var toggles = Array.prototype.slice.apply(document.querySelectorAll('.toggle'));
+  var toggles = Array.prototype.slice.apply(document.querySelectorAll('.toggle')),
+      wrapper = document.querySelector('.wrapper');
+
   toggles.forEach(function(toggle){
     toggle.classList.add('closed');
   });
@@ -18,12 +20,20 @@ window.onload = function(){
     }
   });
 
-  document.querySelector('.bt-toggle').addEventListener('click',function(e){
+  document.querySelector('.bt-toggle').addEventListener('click',function(){
     var toggleMehtod = this.classList.contains('closed') ? 'remove' : 'add';
     this.classList[toggleMehtod]('closed');
     toggles.forEach(function(toggle){
       toggle.classList[toggleMehtod]('closed');
     });
+  });
+
+  document.querySelector('.toggle-links').addEventListener('click',function(){
+    wrapper.classList.toggle('show-links');
+  });
+
+  document.querySelector('.toggle-twitter').addEventListener('click',function(){
+    wrapper.classList.toggle('show-twitter');
   });
 
   twitterFetcher.fetch({
