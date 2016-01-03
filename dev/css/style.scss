@@ -1,13 +1,33 @@
 @import 'reset';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro);
 
+$medium: "(min-width: 768px)";
+$large: "(min-width: 1024px)";
+
+$colors: (
+  #222
+  #444
+  #888
+  #aaa
+  #eee
+);
+
+$code: (
+  string: #009688, //
+  int: #E91E63, //
+  bool: #EF6C00, //
+  null: #2196F3, //
+  function: #7E57C2, //
+  date: #8D6E63
+);
+
 html{
   font-size:62.5%;
 }
 
 body{
-  background:#eee;
-  color:#444;
+  background:nth($colors, 5);
+  color:nth($colors, 2);
   font-size:1.4rem;
   line-height: 1.8rem;
   font-family: 'Open Sans', sans-serif;
@@ -26,46 +46,11 @@ h1{
   text-align: center;
 }
 
-footer{
-  color:#eee;
-  background:#222;
-  #tweets{
-    li{
-      padding:1.5rem 4rem;
-      overflow: hidden;
-      display: block;
-      &:before{
-        content: '';
-        display:block;
-        width:10%;
-        height:0;
-        padding-top:10%;
-        margin:0 auto 0.5rem;
-        background: url(../img/twitter.svg) center center no-repeat;
-        background-size:90%;
-      }
-    }
-    img{
-      display:block;
-      width:25%;
-      float:right;
-      margin:0 0 1rem 1rem;
-    }
-    a{
-      color:#aaa;
-    }
-    .tco-hidden{
-      display:none;
-    }
-    .tweet-infos{
-      text-align:right;
-      font-style:italic;
-      clear:both;
-      padding-top:1rem;
-    }
-  }
+h2{
+  font-size:1.4rem;
+  line-height: 2.6rem;
+  text-align: center;
 }
-
 
 .global-object{
   overflow:hidden;
@@ -75,7 +60,7 @@ footer{
   font-size: 1.4rem;
   line-height: 2rem;
   padding:1rem;
-  color:#444;
+  color:nth($colors, 2);
   text-align: center;
   position:relative;
   .bt-toggle{
@@ -83,14 +68,17 @@ footer{
     position:absolute;
     padding:0;
     border-radius:50%;
-    background:#444;
+    background:nth($colors, 2);
     width:3rem;
     height:3rem;
     border:0;
-    top:1rem;
-    right:2rem;
+    top:0;
+    left:50%;
+    margin-left:-1.5rem;
     transform: rotate(90deg);
     outline: 0;
+    opacity:0.5;
+    cursor: pointer;
     &.closed{
       transform: rotate(0);
     }
@@ -101,7 +89,7 @@ footer{
       height:0;
       border-style:solid;
       border-width:0.75rem 0 0.75rem 0.75rem;
-      border-color:transparent transparent transparent #eee;
+      border-color:transparent transparent transparent nth($colors, 5);
       position:absolute;
       top:0.75rem;
       left:1.25rem;
@@ -120,29 +108,29 @@ footer{
   .key{
     vertical-align:top;
     display: inline-block;
-    color:#888;
+    color:nth($colors, 3);
     + ul{
       display: inline-block;
     }
   }
   .string{
-    color:#C9C300;
+    color:map-get($code, string);
     &:before,
     &:after{
       content:'\'';
     }
   }
   .int{
-    color:#F7A916;
+    color:map-get($code, int);
   }
   .bool{
-    color:#C76CCC;
+    color:map-get($code, bool);
   }
   .null{
-    color:#73BA8F;
+    color:map-get($code, null);
   }
   .function{
-    color:#739FBA;
+    color:map-get($code, function);
     &:before{
       content:'function(){';
     }
@@ -151,7 +139,7 @@ footer{
     }
   }
   .date{
-    color:#E37171;
+    color:map-get($code, date);
     &:before{
       content:'new Date(';
     }
@@ -208,7 +196,7 @@ footer{
         display: inline-block;
         padding-right:0.5rem;
         vertical-align: top;
-        color:#888;
+        color:nth($colors, 3);
       }
       &:first-child{
         &:before{
@@ -228,13 +216,13 @@ footer{
       position:absolute;
       border-style:solid;
       border-width:0.5rem 0.5rem 0 0.5rem;
-      border-color:#444 transparent transparent transparent ;
+      border-color:nth($colors, 2) transparent transparent transparent ;
       left:0.25rem;
       top:1rem;
     }
     &.closed > .key:after{
       border-width:0.5rem 0 0.5rem 0.5rem;
-      border-color:transparent transparent transparent #444;
+      border-color:transparent transparent transparent nth($colors, 2);
       left:0.5rem;
       top:0.5rem;
     }
@@ -259,3 +247,102 @@ footer{
     }
   }
 }
+
+aside{
+  li{
+    margin:0 auto 1rem;
+    padding:0 3rem;
+    display: block;
+    a{
+      background:nth($colors, 2);
+      padding:1rem;
+      display: block;
+      color:nth($colors, 5);
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration:none;
+    }
+  }
+  @media #{$large} {
+    transition:0.3s ease margin;
+    color:#eee;
+    background:nth($colors, 1);
+    position:fixed;
+    top:0;
+    bottom:0;
+    right:100%;
+    margin-right:0;
+    width:25rem;
+    overflow: auto;
+  }
+}
+
+footer{
+  color:nth($colors, 5);
+  background:nth($colors, 1);
+  #tweets{
+    li{
+      padding:1.5rem 4rem;
+      overflow: hidden;
+      display: block;
+      &:before{
+        content: '';
+        display:block;
+        width:10%;
+        height:0;
+        padding-top:10%;
+        margin:0 auto 0.5rem;
+        background: url(../img/twitter.svg) center center no-repeat;
+        background-size:90%;
+      }
+    }
+    img{
+      display:block;
+      width:25%;
+      float:right;
+      margin:0 0 1rem 1rem;
+    }
+    a{
+      color:nth($colors, 4);
+    }
+    .tco-hidden{
+      display:none;
+    }
+    .tweet-infos{
+      text-align:right;
+      font-style:italic;
+      clear:both;
+      padding-top:1rem;
+    }
+  }
+  @media #{$large} {
+    transition:0.3s ease margin;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:100%;
+    margin-left:0;
+    width:25rem;
+    overflow: auto;
+  }
+}
+
+.wrapper{
+  @media #{$large} {
+    transition:0.3s ease padding;
+    padding:0;
+    &.show-twitter{
+      padding-right:25rem;
+      footer{
+        margin-left:-25rem;
+      }
+    }
+    &.show-links{
+      padding-left:25rem;
+      aside{
+        margin-right:-25rem;
+      }
+    }
+  }
+}
+
