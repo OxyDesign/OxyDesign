@@ -61,6 +61,7 @@ h2{
   font-size:1.4rem;
   line-height: 2.6rem;
   text-align: center;
+  margin:3rem 0 1rem;
 }
 
 .global-object{
@@ -70,10 +71,14 @@ h2{
   font-family: 'Source Code Pro', monospace;
   font-size: 1.4rem;
   line-height: 2rem;
-  padding:1rem;
+  padding:3rem 1rem 1rem;
   color:nth($colors, 2);
   text-align: center;
   position:relative;
+  a{
+    text-decoration:none;
+    color:inherit;
+  }
   .bt-toggle{
     transition: 0.3s ease transform;
     position:absolute;
@@ -260,6 +265,30 @@ h2{
 }
 
 aside{
+  .pdf{
+    display: block;
+    background:linear-gradient(-135deg, transparent 2rem, nth($colors, 2) 0%);
+    color:nth($colors, 5);
+    width:7rem;
+    padding:6rem 0 2rem;
+    margin:0 auto;
+    position:relative;
+    text-align:center;
+    text-decoration:none;
+    &:after{
+      content:'';
+      display: block;
+      position:absolute;
+      top:0;
+      right:0;
+      background:linear-gradient(-135deg, transparent 2rem, nth($colors, 1) 0%);
+      width:2.82843rem;
+      height:2.82843rem;
+      @media #{$large} {
+        background:linear-gradient(-135deg, transparent 2rem, nth($colors, 3) 0%);
+      }
+    }
+  }
   li{
     margin:0 auto 1rem;
     padding:0 3rem;

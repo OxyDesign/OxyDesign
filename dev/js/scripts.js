@@ -7,16 +7,12 @@ window.onload = function(){
   });
 
   document.querySelector('.global-object').addEventListener('click',function(e){
-    var looping = true,
-        currentElt = e.target;
+    var currentElt = e.target;
 
-    for(; looping; ){
-      if(currentElt.classList.contains('toggle')){
-        currentElt.classList.toggle('closed');
-        looping = false;
-      } else if(currentElt.nodeName === 'A' ||  currentElt === this){
-        looping = false;
-      } else currentElt = currentElt.parentElement;
+    if(currentElt.classList.contains('toggle')){
+      currentElt.classList.toggle('closed');
+    }else if(currentElt.parentElement.classList.contains('toggle')){
+      currentElt.parentElement.classList.toggle('closed');
     }
   });
 
