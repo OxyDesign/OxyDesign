@@ -13,13 +13,30 @@ $colors: (
 );
 
 $code: (
-  string: #009688, //
-  int: #E91E63, //
-  bool: #EF6C00, //
-  null: #2196F3, //
-  function: #7E57C2, //
+  string: #009688,
+  int: #E91E63,
+  bool: #EF6C00,
+  null: #2196F3,
+  function: #7E57C2,
   date: #8D6E63
 );
+
+$jsColors: (
+  #DD1B16,
+  #61DAFB,
+  #27272B,
+  #0071B5
+);
+
+$cssColors: (
+  #CF649A,
+  #FF6347,
+  #1D365D
+);
+
+$animationDuration: 0.5s;
+
+$chartSize:15rem;
 
 html{
   font-size:62.5%;
@@ -62,6 +79,199 @@ h2{
   line-height: 2.6rem;
   text-align: center;
   margin:3rem 0 1rem;
+}
+
+body{
+  background:#eee;
+  padding:10px;
+}
+
+.chart{
+  width:$chartSize;
+  height:$chartSize;
+  position:relative;
+  border-radius:50%;
+  border-width:$chartSize/30;
+  border-style:solid;
+  border-color:#ddd;
+  @media #{$medium} {
+    width:$chartSize*1.4;
+    height:$chartSize*1.4;
+  }
+  &:before{
+    content:'';
+    position:absolute;
+    border-radius:50%;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    border-width:$chartSize/30 + $chartSize/5.5;
+    border-style:solid;
+    border-color:#ddd;
+  }
+  &:after{
+    content:'';
+    position:absolute;
+    border-radius:50%;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    border-width:$chartSize/5.5;
+    border-style:solid;
+    border-color:#bbb;
+  }
+  .circle{
+    transition:opacity $animationDuration/2 linear;
+    opacity:1;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    z-index:1;
+    > [class^=half]{
+      position:absolute;
+      top:0;
+      bottom:0;
+      overflow:hidden;
+      .half-circle{
+        position:absolute;
+        top:0;
+        bottom:0;
+        content:'';
+        display:block;
+        border-radius:50%;
+        border-width:$chartSize/45;
+        border-style:solid;
+        border-color:transparent;
+        transform:rotate(45deg);
+        &:before{
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          border-style: solid;
+          border-width: $chartSize/7.5;
+          margin:0rem;
+          border-radius: 50%;
+          z-index: 1;
+        }
+        &:after{
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          border-style: solid;
+          border-width: $chartSize/45;
+          margin:$chartSize/7.5;
+          border-radius: 50%;
+          z-index: 2;
+        }
+      }
+    }
+    .half-right{
+      right:0;
+      left:50%;
+      .half-circle{
+        transition:transform $animationDuration linear;
+        right:0;
+        left:-100%;
+      }
+    }
+    .half-left{
+      right:50%;
+      left:0;
+      .half-circle{
+        transition:transform $animationDuration/2 linear $animationDuration/2;
+        right:-100%;
+        left:0;
+      }
+      & + .half-right{
+        .half-circle{
+          transition:transform $animationDuration/2 linear;
+        }
+      }
+    }
+  }
+  &.inactive{
+    .circle{
+      opacity:0;
+      > [class^=half]{
+        .half-circle{
+          transform:rotate(45deg) !important;
+          transition:none;
+        }
+      }
+    }
+  }
+}
+
+.chart-list{
+  li{
+    &:before{
+      content:'';
+      display: inline-block;
+      width:2rem;
+      height:1rem;
+      margin-right:1rem;
+    }
+  }
+}
+
+@mixin setChartColors($colors) {
+  $length: length($colors);
+  $count: $length;
+  @each $color in $colors {
+    .circle:nth-child(#{$length}n+#{$count}){
+      .half-right{
+        .half-circle{
+          border-color: transparent transparent lighten($color,10%) lighten($color,10%);
+          &:before{
+            border-color:transparent transparent $color $color;
+          }
+          &:after{
+            border-color: transparent transparent darken($color,10%) darken($color,10%);
+          }
+        }
+      }
+      .half-left{
+        .half-circle{
+          border-color:lighten($color,10%) lighten($color,10%) transparent transparent;
+          &:before{
+            border-color:$color $color transparent transparent;
+          }
+          &:after{
+            border-color:darken($color,10%) darken($color,10%) transparent transparent;
+          }
+        }
+      }
+    }
+    $count:$count - 1;
+  }
+  @each $color in $colors {
+    $count:$count + 1;
+    .chart-list{
+      li:nth-child(#{$length}n+#{$count}){
+        &:before{
+          background:$color;
+        }
+      }
+    }
+  }
+}
+
+.chart-js{
+  @include setChartColors($jsColors);
+}
+
+.chart-css{
+  @include setChartColors($cssColors);
 }
 
 .global-object{
