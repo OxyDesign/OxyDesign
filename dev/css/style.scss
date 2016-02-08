@@ -86,6 +86,17 @@ body{
   padding:10px;
 }
 
+.charts{
+  overflow:hidden;
+  .dynamic-chart{
+    text-align: center;
+    @media #{$medium} {
+      float:left;
+      width:50%;
+    }
+  }
+}
+
 .chart{
   width:$chartSize;
   height:$chartSize;
@@ -94,7 +105,12 @@ body{
   border-width:$chartSize/30;
   border-style:solid;
   border-color:#ddd;
+  margin:0 auto;
   @media #{$medium} {
+    width:$chartSize*1.2;
+    height:$chartSize*1.2;
+  }
+  @media #{$large} {
     width:$chartSize*1.4;
     height:$chartSize*1.4;
   }
@@ -213,6 +229,9 @@ body{
 }
 
 .chart-list{
+  display: inline-block;
+  text-align: left;
+  margin:1rem 0 3rem;
   li{
     &:before{
       content:'';
@@ -503,6 +522,15 @@ aside{
     margin:0 auto 1rem;
     padding:0 3rem;
     display: block;
+    box-sizing: border-box;
+    @media #{$medium} {
+      width:50%;
+      float:left;
+    }
+    @media #{$large} {
+      width:auto;
+      float:none;
+    }
     a{
       background:nth($colors, 2);
       padding:1rem;
@@ -644,4 +672,3 @@ footer{
     }
   }
 }
-
