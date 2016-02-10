@@ -1,6 +1,6 @@
 window.onload = function(){
   var charts = Array.prototype.slice.call(document.querySelectorAll('.dynamic-chart')),
-      toggles = Array.prototype.slice.apply(document.querySelectorAll('.toggle')),
+      toggles = Array.prototype.slice.call(document.querySelectorAll('.toggle')),
       wrapper = document.querySelector('.wrapper');
 
   charts.forEach(function(chart){
@@ -57,14 +57,19 @@ window.onload = function(){
 
     container.appendChild(fragment);
 
-    setTimeout(function(){
-      container.classList.remove('inactive');
-    },500);
-
     container.addEventListener('click',function(){
       this.classList.toggle('inactive');
     });
   });
+
+  setTimeout(function(){
+    setTimeout(function(){
+      fetchTweets();
+    });
+    charts.forEach(function(chart){
+      chart.querySelector('.chart').classList.remove('inactive');
+    });
+  },500);
 
   toggles.forEach(function(toggle){
     toggle.classList.add('closed');
@@ -95,7 +100,9 @@ window.onload = function(){
   document.querySelector('.toggle-twitter').addEventListener('click',function(){
     wrapper.classList.toggle('show-twitter');
   });
+};
 
+function fetchTweets(){
   twitterFetcher.fetch({
     id:'659879377698729984',
     dataOnly: true,
@@ -112,4 +119,4 @@ window.onload = function(){
       document.getElementById('tweets').innerHTML = html;
     }
   });
-};
+}

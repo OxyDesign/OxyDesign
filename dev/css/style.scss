@@ -3,6 +3,7 @@
 
 $medium: "(min-width: 768px)";
 $large: "(min-width: 1024px)";
+$wide: "(min-width: 1600px)";
 
 $colors: (
   #222
@@ -79,11 +80,6 @@ h2{
   line-height: 2.6rem;
   text-align: center;
   margin:3rem 0 1rem;
-}
-
-body{
-  background:#eee;
-  padding:10px;
 }
 
 .charts{
@@ -518,6 +514,9 @@ aside{
       }
     }
   }
+  ul{
+    overflow:hidden;
+  }
   li{
     margin:0 auto 1rem;
     padding:0 3rem;
@@ -552,6 +551,9 @@ aside{
     margin-right:0;
     width:25rem;
     overflow: auto;
+  }
+  @media #{$wide} {
+    width:40rem;
   }
 }
 
@@ -602,6 +604,9 @@ footer{
     margin-left:0;
     width:25rem;
     overflow: auto;
+  }
+  @media #{$wide} {
+    width:40rem;
   }
 }
 
@@ -668,6 +673,26 @@ footer{
         &:after{
           transform:rotate(180deg);
         }
+      }
+    }
+  }
+  @media #{$wide} {
+    .toggle-links,
+    .toggle-twitter{
+      display:none;
+    }
+    &,
+    &.show-links{
+      padding-left:40rem;
+      aside{
+        margin-right:-40rem;
+      }
+    }
+    &,
+    &.show-twitter{
+      padding-right:40rem;
+      footer{
+        margin-left:-40rem;
       }
     }
   }
