@@ -50,10 +50,8 @@ gulp.task('default', ['clean'], function() {
 
   gulp.watch('dev/css/*.scss', ['styles']);
   gulp.watch('dev/js/*.js', ['scripts']);
-  gulp.watch('dev/libs/*.js', ['libs']);
+  gulp.watch('dev/libs/*.js', ['scripts']);
 
   livereload.listen();
   gulp.watch(['dist/**']).on('change', livereload.changed);
 });
-
-
